@@ -126,97 +126,619 @@
     <script>
         // --- 專家擴充後的語塊資料庫 (基於 CSV 內容) ---
         const chunksData = [
-            {
-                chunk: "how many steps",
-                ipa: "/haʊ ˈmɛni stɛps/",
-                meaning: "多少步",
-                note: "詢問數量用 how many，注意 steps 要用複數。",
-                context: "討論健康、運動或達成目標的過程時使用。",
-                ex1: "How many steps did you take today?",
-                ex2: "I'm not sure how many steps are left in the process."
-            },
-            {
-                chunk: "every day",
-                ipa: "/ˈɛvri deɪ/",
-                meaning: "每天",
-                note: "通常放在句尾的時間副詞。注意與形容詞 everyday (日常的) 區分。",
-                context: "強調習慣、例行公事或頻率。",
-                ex1: "You should practice listening to English every day.",
-                ex2: "Drinking enough water every day is good for your health."
-            },
-            {
-                chunk: "is enough for",
-                ipa: "/ɪz ɪˈnʌf fɔr/",
-                meaning: "對...是足夠的",
-                note: "enough 可以修飾形容詞 (good enough) 或名詞 (enough money)。此處為 be V + enough + for sb/sth。",
-                context: "評估資源、時間或條件是否滿足需求。",
-                ex1: "Five minutes is enough for me to get ready.",
-                ex2: "This amount of food is enough for three people."
-            },
-            {
-                chunk: "live longer",
-                ipa: "/lɪv ˈlɔŋɡər/",
-                meaning: "活得更久",
-                note: "Longer 是 long 的比較級。注意 live 發音為 /lɪv/ (動詞)，而非 /laɪv/ (現場的)。",
-                context: "討論健康生活方式、醫療進步或壽命。",
-                ex1: "People who exercise regularly tend to live longer.",
-                ex2: "Researchers are studying how to help us live longer."
-            },
-            {
-                chunk: "concluded that",
-                ipa: "/kənˈkludəd ðæt/",
-                meaning: "下結論說...",
-                note: "正式用語。that 後面接完整的子句 (主詞 + 動詞)。",
-                context: "學術報告、新聞報導或邏輯推論的結尾。",
-                ex1: "The report concluded that we need to change our strategy.",
-                ex2: "They concluded that the experiment was a success."
-            },
-            {
-                chunk: "lowered the risk",
-                ipa: "/ˈloʊərd ðə rɪsk/",
-                meaning: "降低了風險",
-                note: "Lower 這裡作動詞用。Risk 後面常接 of + V-ing。",
-                context: "醫療、投資或安全相關話題。",
-                ex1: "Quitting smoking lowered the risk of lung cancer.",
-                ex2: "Wearing a helmet lowered the risk of head injury."
-            },
-            {
-                chunk: "look at their phones",
-                ipa: "/lʊk æt ðɛr foʊnz/",
-                meaning: "看著他們的手機",
-                note: "Look 不及物動詞，加上 at 才能接受詞。Phone 通常指智慧型手機。",
-                context: "描述現代人的行為模式或社交現象。",
-                ex1: "People often look at their phones while waiting for the bus.",
-                ex2: "Don't look at your phones during the meeting."
-            },
-            {
-                chunk: "fall asleep",
-                ipa: "/fɔl əˈslip/",
-                meaning: "睡著 (進入睡眠狀態)",
-                note: "Fall 是連綴動詞，asleep 是形容詞。這是一個瞬間動作，區別於 sleep (持續動作)。",
-                context: "描述入睡的過程或困難。",
-                ex1: "It took me a long time to fall asleep last night.",
-                ex2: "Don't fall asleep in class!"
-            },
-             {
-                chunk: "pay with cash",
-                ipa: "/peɪ wɪð kæʃ/",
-                meaning: "用現金支付",
-                note: "工具介系詞用 with。若用信用卡則說 pay by credit card。",
-                context: "購物結帳時。",
-                ex1: "I usually prefer to pay with cash at small stores.",
-                ex2: "Can I pay with cash here?"
-            },
-            {
-                chunk: "can't wait",
-                ipa: "/kænt weɪt/",
-                meaning: "等不及了 / 超期待",
-                note: "表達興奮的誇飾法。後面常接 to V 或 for N。",
-                context: "表達對未來事件的強烈期待。",
-                ex1: "I can't wait to see you again!",
-                ex2: "The kids can't wait for summer vacation."
-            }
-        ];
+                                      {
+                                        "chunk": "how many steps",
+                                        "meaning": "多少步",
+                                        "note": "詢問數量用 how many",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "every day",
+                                        "meaning": "每天",
+                                        "note": "放句尾的時間語塊",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "is enough for...",
+                                        "meaning": "對...是足夠的",
+                                        "note": "好用句型：Money is enough for me.",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "live longer",
+                                        "meaning": "活得更久",
+                                        "note": "longer 是 long 的比較級",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "looked at",
+                                        "meaning": "查看/檢視",
+                                        "note": "過去式 look -> looked",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "concluded that...",
+                                        "meaning": "下結論說...",
+                                        "note": "寫報告或表達觀點時的高級字",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "lowered the risk",
+                                        "meaning": "降低了風險",
+                                        "note": "lower 這裡當動詞用",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "heart disease",
+                                        "meaning": "心臟病",
+                                        "note": "固定搭配",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "is bad for...",
+                                        "meaning": "對...是有害的",
+                                        "note": "相反詞是 is good for",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "look at their phones",
+                                        "meaning": "看著他們的手機",
+                                        "note": "記得是用 at",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "in bed",
+                                        "meaning": "在床上",
+                                        "note": "不用說 on the bed，習慣說 in bed",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "fall asleep",
+                                        "meaning": "睡著",
+                                        "note": "這是一個動作，不是 sleeping",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "stop using",
+                                        "meaning": "停止使用",
+                                        "note": "stop + Ving (停止做某事)",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "before bedtime",
+                                        "meaning": "在睡覺時間之前",
+                                        "note": "before + 時間點",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "around the world",
+                                        "meaning": "世界各地",
+                                        "note": "常見地點語塊",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "brings good news",
+                                        "meaning": "帶來好消息",
+                                        "note": "bring 加了 s (單數主詞)",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "helps our heart",
+                                        "meaning": "幫助我們的心臟/有益心臟",
+                                        "note": "help 加了 s",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "looked at",
+                                        "meaning": "查看/調查",
+                                        "note": "過去式 (look -> looked)",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "too much sugar",
+                                        "meaning": "太多的糖",
+                                        "note": "sugar 不可數，用 much",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "the best choice",
+                                        "meaning": "最好的選擇",
+                                        "note": "good 的最高級 -> the best",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "pay with cash",
+                                        "meaning": "用現金支付",
+                                        "note": "介系詞用 with",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "prefer to use",
+                                        "meaning": "更喜歡使用/偏好使用",
+                                        "note": "prefer = 比較喜歡",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "credit cards",
+                                        "meaning": "信用卡",
+                                        "note": "通常用複數",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "faster and easier",
+                                        "meaning": "更快且更容易",
+                                        "note": "比較級 (fast+er / easy -> easier)",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "anymore",
+                                        "meaning": "再也(不)...",
+                                        "note": "用於否定句句尾 (not ... anymore)",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "a big change",
+                                        "meaning": "一個巨大的改變",
+                                        "note": "change 這裡當名詞",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "spend time",
+                                        "meaning": "花時間",
+                                        "note": "spend + time + in/on...",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "in nature",
+                                        "meaning": "在大自然中",
+                                        "note": "不用加 the (in the nature ❌)",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "reduce stress",
+                                        "meaning": "減少壓力",
+                                        "note": "reduce = 減少/降低",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "mental health",
+                                        "meaning": "心理健康",
+                                        "note": "相對於 physical health (身體健康)",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "feel relaxed",
+                                        "meaning": "感到放鬆的",
+                                        "note": "人的感覺用 -ed 結尾 (relaxed)",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "green spaces",
+                                        "meaning": "綠地/綠色空間",
+                                        "note": "公園、森林都算",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "learn how to",
+                                        "meaning": "學習如何去...",
+                                        "note": "learn how to swim/cook...",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "make mistakes",
+                                        "meaning": "犯錯",
+                                        "note": "固定搭配 make (不做 do mistakes)",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "don't give up",
+                                        "meaning": "不要放棄",
+                                        "note": "give up = 放棄",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "get better at",
+                                        "meaning": "在...方面變更好",
+                                        "note": "at 後面接名詞或 V-ing",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "It takes time",
+                                        "meaning": "這需要時間",
+                                        "note": "這裡的 take 是「花費」的意思",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "practice every day",
+                                        "meaning": "每天練習",
+                                        "note": "成功的關鍵",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "book a flight",
+                                        "meaning": "訂機票",
+                                        "note": "book 當動詞是「預訂」",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "stay in a hotel",
+                                        "meaning": "住飯店",
+                                        "note": "stay in + 住宿地點",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "pack my bags",
+                                        "meaning": "打包行李",
+                                        "note": "pack = 打包",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "take photos",
+                                        "meaning": "拍照",
+                                        "note": "固定搭配 take",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "can't wait",
+                                        "meaning": "等不及了/超期待",
+                                        "note": "表達興奮的最高級",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "visit famous places",
+                                        "meaning": "參觀著名景點",
+                                        "note": "visit = 參觀/拜訪",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "sit for a long time",
+                                        "meaning": "坐很久/坐很長一段時間",
+                                        "note": "for + 時間長度",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "at work / at home",
+                                        "meaning": "在工作 / 在家",
+                                        "note": "注意：不用加 the",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "too much",
+                                        "meaning": "太多",
+                                        "note": "修飾不可數或動作程度",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "stand up",
+                                        "meaning": "站起來",
+                                        "note": "常見動作片語",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "move more",
+                                        "meaning": "多活動/多動一點",
+                                        "note": "move = 移動/活動",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "every hour",
+                                        "meaning": "每小時",
+                                        "note": "頻率副詞",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "junk food",
+                                        "meaning": "垃圾食物",
+                                        "note": "雖然叫 junk (垃圾)，但指高熱量食物",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "gain weight",
+                                        "meaning": "變胖/增加體重",
+                                        "note": "比較禮貌的說法 (不直接說 get fat)",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "processed food",
+                                        "meaning": "加工食品",
+                                        "note": "process (處理) + ed",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "stay healthy",
+                                        "meaning": "保持健康",
+                                        "note": "stay 這裡指「保持狀態」",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "should avoid",
+                                        "meaning": "應該避免",
+                                        "note": "avoid + V-ing (避免做某事)",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "fresh fruit",
+                                        "meaning": "新鮮水果",
+                                        "note": "fresh = 新鮮的",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "work from home",
+                                        "meaning": "在家工作",
+                                        "note": "簡稱 WFH",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "save time",
+                                        "meaning": "節省時間",
+                                        "note": "相反詞是 waste time (浪費時間)",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "travel to work",
+                                        "meaning": "通勤/去上班",
+                                        "note": "也可以說 commute",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "office workers",
+                                        "meaning": "上班族/辦公室員工",
+                                        "note": "office + worker",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "online meetings",
+                                        "meaning": "線上會議",
+                                        "note": "透過 Zoom/Teams 開會",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "miss their friends",
+                                        "meaning": "想念他們的朋友",
+                                        "note": "miss 這裡當「想念」",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "throw away",
+                                        "meaning": "丟棄/扔掉",
+                                        "note": "throw = 丟",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "leftover food",
+                                        "meaning": "剩菜/剩下的食物",
+                                        "note": "leftover 當形容詞",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "save money",
+                                        "meaning": "省錢",
+                                        "note": "跟 save time (省時) 一樣好用",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "expiry date",
+                                        "meaning": "有效期限/到期日",
+                                        "note": "超市購物必看",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "check the fridge",
+                                        "meaning": "檢查冰箱",
+                                        "note": "fridge 是 refrigerator 的簡稱",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      },
+                                      {
+                                        "chunk": "go shopping",
+                                        "meaning": "去購物",
+                                        "note": "go + V-ing",
+                                        "ex1": "Example sentence pending...",
+                                        "ex2": "",
+                                        "ipa": "",
+                                        "context": ""
+                                      }
+                                    ];
 
         let currentIndex = 0;
         let isFlipped = false;
