@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英文語塊學習卡 (Lexical Chunks)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f9ff; /* 淺藍色背景，護眼 */
+        }
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+            transform: rotateY(180deg);
+        }
+        /* 翻轉動畫 */
+        .card-container {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .card-container.flipped {
+            transform: rotateY(180deg);
+        }
+        .btn-hover:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen overflow-hidden">
+
+    <!-- Header -->
+    <header class="bg-blue-600 text-white p-4 shadow-md z-10">
+        <div class="max-w-md mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold"><i class="fas fa-layer-group mr-2"></i>語塊學習 (Lexical Chunks)</h1>
+            <div class="text-sm opacity-80" id="progress-display">0 / 0</div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col items-center justify-center p-4 relative">
+        
+        <!-- Flashcard Area -->
+        <div class="w-full max-w-md h-[500px] perspective-1000 cursor-pointer group" onclick="flipCard()">
+            <div id="card-inner" class="card-container w-full h-full relative shadow-xl rounded-2xl">
+                
+                <!-- Front Side (English) -->
+                <div class="absolute w-full h-full bg-white rounded-2xl p-8 flex flex-col justify-between items-center backface-hidden border-2 border-blue-100">
+                    <div class="w-full flex justify-between items-start text-gray-400">
+                        <span class="text-xs uppercase tracking-wider">English Chunk</span>
+                        <i class="fas fa-volume-up text-2xl text-blue-500 hover:text-blue-700 p-2 btn-hover transition" onclick="event.stopPropagation(); playAudio()"></i>
+                    </div>
+                    
+                    <div class="flex-1 flex flex-col justify-center items-center text-center">
+                        <h2 id="card-chunk" class="text-4xl font-bold text-gray-800 mb-4 leading-tight"></h2>
+                        <p id="card-ipa" class="text-lg text-blue-500 font-mono bg-blue-50 px-3 py-1 rounded-full"></p>
+                    </div>
+
+                    <div class="w-full border-t border-gray-100 pt-4">
+                        <p class="text-sm text-gray-500 text-center mb-2">Example Sentences:</p>
+                        <ul class="text-left text-gray-700 space-y-2 text-sm">
+                            <li class="flex items-start"><span class="text-blue-400 mr-2">➤</span><span id="card-ex1"></span></li>
+                            <li class="flex items-start"><span class="text-blue-400 mr-2">➤</span><span id="card-ex2"></span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="absolute bottom-4 text-gray-300 text-xs animate-pulse">
+                        Tap to flip
+                    </div>
+                </div>
+
+                <!-- Back Side (Chinese & Analysis) -->
+                <div class="absolute w-full h-full bg-slate-800 text-white rounded-2xl p-8 flex flex-col rotate-y-180 backface-hidden border-2 border-slate-700">
+                    <div class="w-full flex justify-between items-start text-gray-400 mb-6">
+                        <span class="text-xs uppercase tracking-wider">Analysis</span>
+                        <i class="fas fa-lightbulb text-yellow-400"></i>
+                    </div>
+
+                    <div class="flex-1 overflow-y-auto">
+                        <h3 id="card-meaning" class="text-3xl font-bold text-yellow-300 mb-4 text-center"></h3>
+                        
+                        <div class="bg-slate-700/50 rounded-lg p-4 mb-4">
+                            <h4 class="text-xs text-gray-400 uppercase mb-2 font-bold">實用筆記 (Grammar Note)</h4>
+                            <p id="card-note" class="text-gray-200 leading-relaxed"></p>
+                        </div>
+
+                        <div class="bg-slate-700/50 rounded-lg p-4">
+                            <h4 class="text-xs text-gray-400 uppercase mb-2 font-bold">使用情境 (Context)</h4>
+                            <p id="card-context" class="text-gray-200 leading-relaxed text-sm"></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Controls -->
+    <footer class="bg-white border-t border-gray-200 p-4">
+        <div class="max-w-md mx-auto flex justify-between items-center gap-4">
+            <button onclick="prevCard()" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3 px-4 rounded-xl transition btn-hover flex justify-center items-center">
+                <i class="fas fa-arrow-left mr-2"></i> Prev
+            </button>
+            <button onclick="shuffleCards()" class="bg-blue-100 hover:bg-blue-200 text-blue-600 p-3 rounded-xl transition btn-hover" title="Shuffle">
+                <i class="fas fa-random"></i>
+            </button>
+            <button onclick="nextCard()" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg shadow-blue-200 transition btn-hover flex justify-center items-center">
+                Next <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        // --- 專家擴充後的語塊資料庫 (基於 CSV 內容) ---
+        const chunksData = [
+            {
+                chunk: "how many steps",
+                ipa: "/haʊ ˈmɛni stɛps/",
+                meaning: "多少步",
+                note: "詢問數量用 how many，注意 steps 要用複數。",
+                context: "討論健康、運動或達成目標的過程時使用。",
+                ex1: "How many steps did you take today?",
+                ex2: "I'm not sure how many steps are left in the process."
+            },
+            {
+                chunk: "every day",
+                ipa: "/ˈɛvri deɪ/",
+                meaning: "每天",
+                note: "通常放在句尾的時間副詞。注意與形容詞 everyday (日常的) 區分。",
+                context: "強調習慣、例行公事或頻率。",
+                ex1: "You should practice listening to English every day.",
+                ex2: "Drinking enough water every day is good for your health."
+            },
+            {
+                chunk: "is enough for",
+                ipa: "/ɪz ɪˈnʌf fɔr/",
+                meaning: "對...是足夠的",
+                note: "enough 可以修飾形容詞 (good enough) 或名詞 (enough money)。此處為 be V + enough + for sb/sth。",
+                context: "評估資源、時間或條件是否滿足需求。",
+                ex1: "Five minutes is enough for me to get ready.",
+                ex2: "This amount of food is enough for three people."
+            },
+            {
+                chunk: "live longer",
+                ipa: "/lɪv ˈlɔŋɡər/",
+                meaning: "活得更久",
+                note: "Longer 是 long 的比較級。注意 live 發音為 /lɪv/ (動詞)，而非 /laɪv/ (現場的)。",
+                context: "討論健康生活方式、醫療進步或壽命。",
+                ex1: "People who exercise regularly tend to live longer.",
+                ex2: "Researchers are studying how to help us live longer."
+            },
+            {
+                chunk: "concluded that",
+                ipa: "/kənˈkludəd ðæt/",
+                meaning: "下結論說...",
+                note: "正式用語。that 後面接完整的子句 (主詞 + 動詞)。",
+                context: "學術報告、新聞報導或邏輯推論的結尾。",
+                ex1: "The report concluded that we need to change our strategy.",
+                ex2: "They concluded that the experiment was a success."
+            },
+            {
+                chunk: "lowered the risk",
+                ipa: "/ˈloʊərd ðə rɪsk/",
+                meaning: "降低了風險",
+                note: "Lower 這裡作動詞用。Risk 後面常接 of + V-ing。",
+                context: "醫療、投資或安全相關話題。",
+                ex1: "Quitting smoking lowered the risk of lung cancer.",
+                ex2: "Wearing a helmet lowered the risk of head injury."
+            },
+            {
+                chunk: "look at their phones",
+                ipa: "/lʊk æt ðɛr foʊnz/",
+                meaning: "看著他們的手機",
+                note: "Look 不及物動詞，加上 at 才能接受詞。Phone 通常指智慧型手機。",
+                context: "描述現代人的行為模式或社交現象。",
+                ex1: "People often look at their phones while waiting for the bus.",
+                ex2: "Don't look at your phones during the meeting."
+            },
+            {
+                chunk: "fall asleep",
+                ipa: "/fɔl əˈslip/",
+                meaning: "睡著 (進入睡眠狀態)",
+                note: "Fall 是連綴動詞，asleep 是形容詞。這是一個瞬間動作，區別於 sleep (持續動作)。",
+                context: "描述入睡的過程或困難。",
+                ex1: "It took me a long time to fall asleep last night.",
+                ex2: "Don't fall asleep in class!"
+            },
+             {
+                chunk: "pay with cash",
+                ipa: "/peɪ wɪð kæʃ/",
+                meaning: "用現金支付",
+                note: "工具介系詞用 with。若用信用卡則說 pay by credit card。",
+                context: "購物結帳時。",
+                ex1: "I usually prefer to pay with cash at small stores.",
+                ex2: "Can I pay with cash here?"
+            },
+            {
+                chunk: "can't wait",
+                ipa: "/kænt weɪt/",
+                meaning: "等不及了 / 超期待",
+                note: "表達興奮的誇飾法。後面常接 to V 或 for N。",
+                context: "表達對未來事件的強烈期待。",
+                ex1: "I can't wait to see you again!",
+                ex2: "The kids can't wait for summer vacation."
+            }
+        ];
+
+        let currentIndex = 0;
+        let isFlipped = false;
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCard(currentIndex);
+        });
+
+        function loadCard(index) {
+            const data = chunksData[index];
+            
+            // Front
+            document.getElementById('card-chunk').innerText = data.chunk;
+            document.getElementById('card-ipa').innerText = data.ipa;
+            document.getElementById('card-ex1').innerText = data.ex1;
+            document.getElementById('card-ex2').innerText = data.ex2;
+
+            // Back
+            document.getElementById('card-meaning').innerText = data.meaning;
+            document.getElementById('card-note').innerText = data.note;
+            document.getElementById('card-context').innerText = data.context;
+
+            // Progress
+            document.getElementById('progress-display').innerText = `${index + 1} / ${chunksData.length}`;
+
+            // Reset Flip
+            const cardInner = document.getElementById('card-inner');
+            if (isFlipped) {
+                cardInner.classList.remove('flipped');
+                isFlipped = false;
+            }
+        }
+
+        function flipCard() {
+            const cardInner = document.getElementById('card-inner');
+            cardInner.classList.toggle('flipped');
+            isFlipped = !isFlipped;
+        }
+
+        function nextCard() {
+            if (currentIndex < chunksData.length - 1) {
+                currentIndex++;
+                loadCard(currentIndex);
+            } else {
+                // Loop back to start or alert
+                currentIndex = 0;
+                loadCard(currentIndex);
+            }
+        }
+
+        function prevCard() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                loadCard(currentIndex);
+            } else {
+                currentIndex = chunksData.length - 1;
+                loadCard(currentIndex);
+            }
+        }
+
+        function shuffleCards() {
+            for (let i = chunksData.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [chunksData[i], chunksData[j]] = [chunksData[j], chunksData[i]];
+            }
+            currentIndex = 0;
+            loadCard(0);
+        }
+
+        function playAudio() {
+            const text = chunksData[currentIndex].chunk;
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9; // 稍微慢一點點，適合學習
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                flipCard();
+                e.preventDefault(); // prevent scroll
+            } else if (e.code === 'ArrowRight') {
+                nextCard();
+            } else if (e.code === 'ArrowLeft') {
+                prevCard();
+            }
+        });
+    </script>
+</body>
+</html>
